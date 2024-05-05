@@ -1,7 +1,42 @@
+"use client";
 import Image from "next/image";
 import avatar from "../../public/avatar.png";
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function Testimonial() {
+const TestimonialCarousel = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+  };
+
+  return (
+    <Slider {...settings} className=" mb-32">
+      <div>
+        <Testimonial name="Ankesh" title="CEO at Frontend" />
+      </div>
+      <div>
+        <Testimonial name="Kumar" title="CEO at Backend" />
+      </div>
+      <div>
+        <Testimonial name="Anku" title="CEO at FullStack" />
+      </div>
+      <Testimonial name="Someone" title="CEO at Google" />
+    </Slider>
+  );
+};
+
+export default TestimonialCarousel;
+
+export const Testimonial: React.FC<{ name: string; title: string }> = ({ name, title }): React.ReactElement => {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
@@ -32,10 +67,10 @@ function Testimonial() {
             />
             <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
               <div className="pr-3 font-medium text-gray-900 dark:text-white">
-                Micheal Gough
+                {name}
               </div>
               <div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
-                CEO at Google
+                {title}
               </div>
             </div>
           </figcaption>
@@ -44,5 +79,3 @@ function Testimonial() {
     </section>
   );
 }
-
-export default Testimonial;
